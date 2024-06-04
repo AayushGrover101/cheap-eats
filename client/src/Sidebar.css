@@ -1,0 +1,49 @@
+.sidebar {
+  width: 270px;
+  padding: 40px 50px 30px 50px;
+  background-color: #ffffff;
+  border-left: 1px solid #ddd;
+  position: fixed;
+  right: 0;
+  top: 76px;
+  z-index: 10;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.sidebar .search-bar {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 35px;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  outline: 0px;
+  padding-right: 0;
+  padding-left: 0;
+  transition: border-color 0.3s ease;
+}
+
+.sidebar .search-bar:focus {
+  border-bottom: 2px solid #FF9E57;
+}
+
+.suggested-filters {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0px;
+  overflow-y: auto; 
+  max-height: calc(100vh - 300px);
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.suggested-filters li {
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.suggested-filters li:hover {
+  text-decoration: underline;
+}

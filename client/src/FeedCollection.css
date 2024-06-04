@@ -1,0 +1,138 @@
+.collections-title-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.collections-title-container h1 {
+  margin-right: 10px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.collections-collection-icon {
+  width: 12px;
+  height: 17px;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-bottom: 20px;
+  margin-left: 9px;
+}
+
+.collections-recipe-container {
+  width: 98%;
+  margin: 10px;
+  margin-bottom: -10px;
+  margin-left: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding-left: 0px;
+  padding-top: 30px;
+}
+
+.collections-recipe-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.collections-recipe-image {
+  flex: 0 0 350px;
+  height: 350px;
+  width: 350px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.collections-recipe-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collections-profile-image img {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.collections-profile-image {
+  margin-top: -15px;
+}
+
+.collections-recipe-info .collections-author {
+  margin-left: 20px;
+  margin-top: -18px;
+  color: #000000;
+  font-size: 10px;
+}
+
+.collections-hashtag {
+  font-size: 13px;
+  margin-right: 6px;
+}
+
+.collections-recipe-info {
+  flex: 2;
+  padding: 20px;
+  padding-right: 0px;
+  margin-right: 50px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.collections-recipe-info h1 {
+  margin-top: -22px;
+  font-size: 2em;
+}
+
+.collections-recipe-info .collections-details {
+  margin: 15px 0;
+  color: #000000;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.collections-content-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.collections-ingredients-section, .collections-instructions-section {
+  flex: 1;
+  font-size: 14px;
+}
+
+.collections-scrollable-content {
+  overflow-y: auto;
+  max-height: 170px;
+  min-height: 170px;
+  margin-top: -15px;
+  background-color: white !important;
+  max-width: 450px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.collections-ingredients ul,
+.collections-instructions ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.collections-ingredients ul li,
+.collections-instructions ol li {
+  margin: 10px 0;
+}
+
+h2 {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}

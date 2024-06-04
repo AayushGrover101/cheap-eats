@@ -1,0 +1,160 @@
+.title-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.title-container h1 {
+  margin-right: 10px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.collection-icon {
+  width: 12px;
+  height: 17px;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-bottom: 20px;
+  margin-left: 9px;
+}
+
+.recipe-container {
+  width: 95%;
+  margin: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding-left: 30px;
+  padding-bottom: 10px;
+}
+
+.recipe-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.recipe-image {
+  flex: 0 0 350px;
+  height: 350px;
+  width: 350px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recipe-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-image img {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-image {
+  margin-top: -15px;
+}
+
+.recipe-info .author {
+  margin-left: 20px;
+  margin-top: -18px;
+  color: #000000;
+  font-size: 10px;
+}
+
+.hashtag {
+  font-size: 13px;
+  margin-right: 6px;
+}
+
+.recipe-info {
+  flex: 2;
+  padding: 20px;
+  padding-right: 0px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.recipe-info h1 {
+  margin-top: -22px;
+  font-size: 2em;
+}
+
+.recipe-info .details {
+  margin: 15px 0;
+  color: #000000;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ingredients-section, .instructions-section {
+  flex: 1;
+  font-size: 13px;
+  margin-right: 30px;
+}
+
+.scrollable-content {
+  overflow-y: auto;
+  max-height: 172px;
+  min-height: 172px;
+  margin-top: -15px;
+  background-color: white !important;
+  max-width: 450px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.ingredients ul,
+.instructions ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ingredients ul li,
+.instructions ol li {
+  margin: 8px 0;
+}
+
+h2 {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 76px);
+  overflow-y: auto;
+  position: fixed;
+  top: 76px;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+}
+
+.feed {
+  flex-grow: 1;
+  overflow-y: auto; 
+  width: calc(100% - 370px);
+  margin-right: 370px;
+  padding-top: 30px;
+}

@@ -1,6 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {  signInWithEmailAndPassword   } from 'firebase/auth';
+import { auth } from '../firebase/firebase';
+import { NavLink, useNavigate } from 'react-router-dom'
 
 function Login() {
+
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const onLogin = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        navigate("/")
+        console.log(user);
+    })
+    .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage); // Set error state here
+    });
+  
+  }
+
   return (
 
     <div className="login-container">
@@ -8,20 +33,28 @@ function Login() {
         <div className="overlay"></div>
       </div>
       <div className="login-form-container">
+      
         <div className="login-form">
-          <div className="login-logo">
-            <img src="/Images/logo.png" alt="Cheap Eats Logo" />
-            <hr />
-          </div>
-          <div className="form-group">
-            <input type="email" id="email" name="email" required placeholder="email." />
-          </div>
-          <div className="form-group">
-            <input type="password" id="password" name="password" required placeholder="password." />
-          </div>
-          <button className="login-btn">Sign In</button>
-          <p className="signup-link">Don't have an account? <a href="/signup">Sign Up</a></p>
+          <form onSubmit={onLogin}>
+            <div className="login-logo">
+              <img src="/Images/logo.png" alt="Cheap Eats Logo" />
+              <hr />
+            </div>
+            <div className="form-group">
+              <input type="email" id="email" name="email" required placeholder="email" onChange={(e)=>setEmail(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <input type="password" id="password" name="password" required placeholder="password" onChange={(e)=>setPassword(e.target.value)} />
+            </div>
+
+            {error && <p style={{ color: 'red', fontSize: '14px', marginTop: "15px" }}>{error}</p>}
+            <button className="login-btn">Log In</button>
+            <p className="signup-link">Don't have an account? <NavLink to="/signup"> Sign up </NavLink></p>
+            <p className="forgot-link">Forgot your password? <NavLink to="/forgot-password"> Reset </NavLink></p>
+          </form>
+
         </div>
+        
       </div>
     </div>
 
