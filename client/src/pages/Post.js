@@ -1,3 +1,5 @@
+// Posting Page Component
+
 import React, { useState, useEffect } from 'react';
 import Navbar from "./Navbar";
 import { db, storage } from '../firebase/firebase';
@@ -9,6 +11,8 @@ import "../Post.css";
 
 function Post() {
   const { currentUser } = useAuth();
+
+  // Store all post data in React states
   const [recipeName, setRecipeName] = useState("");
   const [timeTaken, setTimeTaken] = useState("");
   const [servings, setServings] = useState("");
@@ -24,6 +28,7 @@ function Post() {
   const [profilePicture, setProfilePicture] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // Fetch name and profile picture states from Firebase
   useEffect(() => {
     if (currentUser) {
       const fetchData = async () => {
@@ -39,6 +44,7 @@ function Post() {
     }
   }, [currentUser]);
 
+  // Handle changes to the image box
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
       const file = e.target.files[0];
@@ -51,11 +57,13 @@ function Post() {
     }
   };
 
+  // Ensure all hashtags have "#" in front of them automatically and that they are lowercase
   const formatHashtag = (tag) => {
     const lowercasedTag = tag.toLowerCase();
     return lowercasedTag.startsWith("#") ? lowercasedTag : `#${lowercasedTag}`;
   };
 
+  // Handle the post button by adding post to Firebase database
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!image) {
@@ -63,10 +71,13 @@ function Post() {
       return;
     }
 
+    // Allows for post text to change while loading
     setLoading(true);
 
     try {
+      // Create a unique image name in case two users post images with the same name
       const uniqueImageName = `${uuidv4()}-${image.name}`;
+
       const imageRef = ref(storage, `images/${uniqueImageName}`);
       await uploadBytes(imageRef, image);
       const imageUrl = await getDownloadURL(imageRef);
@@ -232,6 +243,7 @@ function Post() {
           </div>
           <div className="post-button">
             <button type="submit" disabled={loading}>
+              {/* Change text of button based on loading state */}
               {loading ? "Posting..." : "Post"}
             </button>
           </div>

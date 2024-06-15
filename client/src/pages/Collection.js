@@ -1,3 +1,5 @@
+// Collection Page Component
+
 import React, { useEffect, useState } from 'react';
 import Navbar from "./Navbar";
 import FeedPostCollection from "./FeedPostCollection";
@@ -8,8 +10,11 @@ import "../FeedCollection.css";
 
 function Collection() {
   const { currentUser } = useAuth();
+
+  // React state to store recipes from Firebase in array
   const [recipes, setRecipes] = useState([]);
 
+  // Fetch recipes from the user's saved recipes collection (sorted by order in which recipes were saved)
   useEffect(() => {
     const fetchCollections = async () => {
       if (currentUser) {
@@ -45,6 +50,7 @@ function Collection() {
     <div>
       <Navbar />
       <h1 style={{ marginLeft: "40px", marginTop: "30px", fontSize: "33px", marginBottom: "-15px" }}>My Collection</h1>
+      {/* When there are no recipes in collection, display text */}
       {recipes.length === 0 ? (
         <p style={{ marginLeft: "40px", marginTop: "35px" }}>You have no saved recipes. Recipes you save on your feed will show up here...</p>
       ) : (

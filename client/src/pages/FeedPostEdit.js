@@ -1,3 +1,5 @@
+// Individual Post Sub-Component (shows up in main My Recipes component) - created to allow for unique edit/delete buttons
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db, storage } from '../firebase/firebase';
@@ -9,10 +11,12 @@ function FeedPostEdit({ recipe }) {
   const navigate = useNavigate();
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  // Navigates to unique edit page when edit button clicked
   const handleEdit = () => {
     navigate(`/edit-post/${recipe.id}`);
   };
 
+  // Handle deletion functionality
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this recipe?')) {
       try {
@@ -30,7 +34,7 @@ function FeedPostEdit({ recipe }) {
           console.warn('Failed to delete image:', imageError);
         }
 
-        // Optionally, refresh the page or update the state to reflect the deletion
+        // Refresh to reflect deletion
         window.location.reload();
       } catch (error) {
         console.error('Error deleting recipe:', error);
@@ -39,6 +43,7 @@ function FeedPostEdit({ recipe }) {
     }
   };
 
+  // Date formatting (string manipulation)
   const formattedDate = recipe.timestamp?.seconds
     ? new Date(recipe.timestamp.seconds * 1000).toLocaleDateString('en-US', {
         year: 'numeric',

@@ -1,3 +1,7 @@
+// This is the file that does all routing. It loads certain components 
+// based on certain URLs, while also redirecting to different URLs 
+// based on whether a user is logged in or not.
+
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -12,11 +16,13 @@ import Post from "./pages/Post";
 import MyRecipes from "./pages/MyRecipes";
 import EditPost from "./pages/EditPost";
 
+// Navigate to the Login component if users are not logged in on private routes
 const PrivateRoute = ({ children }) => {
   const { currentUser } = useAuth();
   return currentUser ? children : <Navigate to="/login" />;
 };
 
+// Navigate to the Feed component if users are attempting to access private routes while logged in
 const PublicRoute = ({ children }) => {
   const { currentUser } = useAuth();
   return currentUser ? <Navigate to="/" /> : children;
@@ -24,8 +30,8 @@ const PublicRoute = ({ children }) => {
 
 export const AppRoutes = () => {
   return (
-    <AuthProvider>
-      <ProfilePictureProvider>
+    <AuthProvider> {/* Pass authentication state to children */ }
+      <ProfilePictureProvider> {/* Pass profile picture state to children */}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<PrivateRoute><Feed /></PrivateRoute>} />

@@ -1,3 +1,5 @@
+// Modified Post Component for Editing Posts
+
 import React, { useState, useEffect } from 'react';
 import Navbar from "./Navbar";
 import { db, storage } from '../firebase/firebase';
@@ -8,7 +10,10 @@ import { v4 as uuidv4 } from 'uuid';
 import "../Post.css";
 
 function EditPost() {
+
+  // Grab the recipe ID from the URL 
   const { recipeId } = useParams();
+
   const navigate = useNavigate();
   const [recipeData, setRecipeData] = useState(null);
   const [recipeName, setRecipeName] = useState("");
@@ -23,6 +28,7 @@ function EditPost() {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
+  // Use the recipe ID from the URL to fetch all recipe data from Firebase
   useEffect(() => {
     const fetchRecipe = async () => {
       const docRef = doc(db, "recipes", recipeId);
@@ -48,6 +54,7 @@ function EditPost() {
     }
   }, [recipeId]);
 
+ // Handle changes to the image box
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
       const file = e.target.files[0];
@@ -60,16 +67,19 @@ function EditPost() {
     }
   };
 
+  // Ensure all hashtags have "#" in front of them automatically and that they are lowercase
   const formatHashtag = (tag) => {
     const lowercasedTag = tag.toLowerCase();
     return lowercasedTag.startsWith("#") ? lowercasedTag : `#${lowercasedTag}`;
   };
 
+  // Handle updating recipe (update all data and handle image changes)
   const handleUpdate = async (e) => {
     e.preventDefault();
 
     let imageUrl = imagePreview;
 
+    // Handle deletion of old image and uploading of new image
     if (image) {
       const oldImageRef = ref(storage, decodeURIComponent(recipeData.imageUrl.split('/o/')[1].split('?')[0]));
       try {

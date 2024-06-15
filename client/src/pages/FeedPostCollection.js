@@ -1,3 +1,5 @@
+// Individual Post Sub-Component (shows up in main Collection component) - created to allow for unique styling
+
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/firebase';
 import { doc, setDoc, getDoc, deleteDoc } from 'firebase/firestore';
@@ -9,6 +11,7 @@ function FeedPostCollection({ recipe }) {
   const [isCollected, setIsCollected] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  // Fetch which recipes have been saved to collection based on Firebase Collection
   useEffect(() => {
     if (currentUser) {
       const fetchCollectionState = async () => {
@@ -21,6 +24,7 @@ function FeedPostCollection({ recipe }) {
     }
   }, [currentUser, recipe.id]);
 
+  // Toggle collection state when user clicks collection button (also save the id and the time at which it was collected for sorting of collections page)
   const handleCollectionClick = async () => {
     if (currentUser) {
       const collectionRef = doc(db, `users/${currentUser.uid}/collections`, recipe.id);
@@ -35,6 +39,7 @@ function FeedPostCollection({ recipe }) {
     }
   };
 
+  // Date formatting (string manipulation)
   const formattedDate = recipe.timestamp?.seconds
     ? new Date(recipe.timestamp.seconds * 1000).toLocaleDateString("en-US", {
         year: 'numeric',

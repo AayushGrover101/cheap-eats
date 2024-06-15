@@ -1,3 +1,5 @@
+// Signup Page Component
+
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
@@ -14,10 +16,11 @@ function Signup() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  // Create new user when sign up button pressed
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if name, email, or password is empty
+    // Following if statements include error handeling
     if (!name || !email || !password) {
       setError("Please fill in all fields");
       return;
@@ -42,6 +45,7 @@ function Signup() {
       return;
     }
 
+    // If no errors, create a user in Firebase
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
@@ -59,7 +63,7 @@ function Signup() {
       });
 
       navigate("/");
-    } catch (error) {
+    } catch (error) { // If error, display error in the HTML (stored in state variable)
       setError(error.message);
     }
   };
@@ -87,9 +91,11 @@ function Signup() {
               <input type="password" id="password" name="password" required placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
 
+            {/* This grabs error messages from Firebase and displays them in the HTML */}
             {error && <p style={{ color: 'red', fontSize: '14px', marginTop: "15px" }}>{error}</p>}
+            
             <button className="login-btn" type="submit">Sign Up</button>
-            <p className="signup-link">Already have an account? <NavLink to="/login">Log in</NavLink></p>
+            <p className="signup-link">Already have an account? <NavLink to="/login">Log in</NavLink> {/* NavLink enables quick no-refresh routing */} </p>
           </form>
         </div>
       </div>

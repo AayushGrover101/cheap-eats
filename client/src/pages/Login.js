@@ -1,15 +1,18 @@
+// Login Page Component
+
 import React, { useState } from 'react';
 import {  signInWithEmailAndPassword   } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
 import { NavLink, useNavigate } from 'react-router-dom'
 
 function Login() {
-
   const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  // Login user when login button pressed 
   const onLogin = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
@@ -21,7 +24,7 @@ function Login() {
     })
     .catch((error) => {
         const errorMessage = error.message;
-        setError(errorMessage); // Set error state here
+        setError(errorMessage);
     });
   
   }
@@ -47,7 +50,9 @@ function Login() {
               <input type="password" id="password" name="password" required placeholder="password" onChange={(e)=>setPassword(e.target.value)} />
             </div>
 
+            {/* This grabs error messages from Firebase and displays them in the HTML */}
             {error && <p style={{ color: 'red', fontSize: '14px', marginTop: "15px" }}>{error}</p>}
+            
             <button className="login-btn">Log In</button>
             <p className="signup-link">Don't have an account? <NavLink to="/signup"> Sign up </NavLink></p>
             <p className="forgot-link">Forgot your password? <NavLink to="/forgot-password"> Reset </NavLink></p>
